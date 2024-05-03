@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 class Aktyor(models.Model):
     ism=models.CharField(max_length=255)
     t_sana=models.DateField(blank=True,null=True)
@@ -32,4 +32,14 @@ class Tarif(models.Model):
 
     def __str__(self):
         return self.nom
+
+class Izoh(models.Model):
+    matn=models.CharField(max_length=255)
+    kino= models.ForeignKey(Kino,on_delete=models.CASCADE)
+    user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+
+    def __str__(self):
+        return self.matn[:25]
+
+
 
